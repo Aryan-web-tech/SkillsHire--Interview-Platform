@@ -87,10 +87,35 @@ export default function Home() {
                 {interviews.map((interview) => (
                   <MeetingCard key={interview._id} interview={interview} />
                 ))}
+
+                <ActionCard
+                  key={QUICK_ACTIONS[1].title}
+                  action={QUICK_ACTIONS[1]}
+                  onClick={() => handleQuickAction(QUICK_ACTIONS[1].title)}
+                />
+                <MeetingModal
+                  isOpen={showModal}
+                  onClose={() => setShowModal(false)}
+                  title={modalType === "join" ? "Join Meeting" : "Start Meeting"}
+                  isJoinMeeting={modalType === "join"}
+                />
+
               </div>
+
             ) : (
-              <div className="text-center py-12 text-muted-foreground">
-                You have no scheduled interviews at the moment
+              <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
+                <ActionCard
+                  key={QUICK_ACTIONS[1].title}
+                  action={QUICK_ACTIONS[1]}
+                  onClick={() => handleQuickAction(QUICK_ACTIONS[1].title)}
+                />
+                <MeetingModal
+                  isOpen={showModal}
+                  onClose={() => setShowModal(false)}
+                  title={modalType === "join" ? "Join Meeting" : "Start Meeting"}
+                  isJoinMeeting={modalType === "join"}
+                />
+
               </div>
             )}
           </div>
